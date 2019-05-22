@@ -46,5 +46,11 @@ public class scenemanager : MonoBehaviour
    		SceneManager.LoadScene((sceneNum + 1), LoadSceneMode.Single); 
    	}
 
+   	// If input of next scene key and the current scene is the last scene in the build index
+   	if(Input.GetKey(nextSceneKey) && sceneNum >= scene.buildIndex) 
+   	{
+   		// Confirming the input to the next scene
+   		Debug.Log("Next scene key has been pressed, but the build index cannot go further");
+   	}
   }
  }
