@@ -6,7 +6,8 @@ public class scenemanager : MonoBehaviour
 // Awake is called sooner than Start.
    void Awake() 
    {
-
+   	// sceneNum is the index of the scene from the "Scenes in Build"
+   	 int sceneNum = SceneManager.GetActiveScene().buildIndex;
    }
 
 // Update is called every frame 
