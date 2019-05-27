@@ -35,12 +35,14 @@ public class scenemanager : MonoBehaviour
    void Update()
    {
         int sceneNum = SceneManager.GetActiveScene().buildIndex;
+        // Debug.Log("Scene count in build is " + SceneManager.sceneCountInBuildSettings);
+        // Debug.Log("Scene num is " + sceneNum);
 
        	// If input of last scene key, and scene number is greather than 0
        	if(Input.GetKey(lastSceneKey) && sceneNum > 0)
        	{
        		// Confirming the input to go back a scene
-       		Debug.Log("Last scene key has been pressed, proceeding to the previous scene"); 
+       		// Debug.Log("Last scene key has been pressed, proceeding to the previous scene, Scene # " + (sceneNum-1)); 
        		// Add 1 to the current scene build index
        		SceneManager.LoadScene((sceneNum - 1), LoadSceneMode.Single); 
        	}
@@ -48,26 +50,29 @@ public class scenemanager : MonoBehaviour
        	// If input of last scene key, and scene number is equal or less than 0
        	if(Input.GetKey(lastSceneKey) && sceneNum <= 0) 
        	{
-   		 // Confirming the input, however cannot go further back than 0 in the array.
-   		Debug.Log("Last scene key has been pressed, but the build index cannot go back");
+            // Confirming the input, however cannot go further back than 0 in the array.
+            // Debug.Log("Last scene key has been pressed, go to last scene in build");
+            SceneManager.LoadScene((SceneManager.sceneCountInBuildSettings - 1), LoadSceneMode.Single);
         }
 
    	    // If input of next scene key and scene number is equal or greather than 0
-   	    if(Input.GetKey(nextSceneKey) && sceneNum >= 0) 
+        if(Input.GetKey(nextSceneKey) && sceneNum >= 0 && sceneNum < SceneManager.sceneCountInBuildSettings) 
    	    {
    		    // Confirming the input to the next scene
-   		    Debug.Log("Next scene key has been pressed, proceeding to the next scene");
+            // Debug.Log("Next scene key has been pressed, proceeding to the next scene, Scene # " + (sceneNum+1));
    	    	// Add 1 to the current scene build index
    	    	SceneManager.LoadScene((sceneNum + 1), LoadSceneMode.Single); 
    	    }
 
-        sceneNumber.text = "Current Scene is " + sceneNum;
+        //If input of next scene key and the current scene is the last scene in the build index
+        if(Input.GetKey(nextSceneKey) && (sceneNum + 1) == SceneManager.sceneCountInBuildSettings) 
+         {
+            // Confirming the input to the next scene
+       	    //Debug.Log("Next scene key has been pressed, going back to first scene");
+            SceneManager.LoadScene((0), LoadSceneMode.Single);
+         }
 
-        // If input of next scene key and the current scene is the last scene in the build index
-        //	if(Input.GetKey(nextSceneKey)) 
-        //	{
-        //		// Confirming the input to the next scene
-        //		Debug.Log("Next scene key has been pressed, but the build index cannot go further");
-        //	}
+        // Update Scene Text
+        sceneNumber.text = "Current Scene is " + sceneNum;
     }
  }
