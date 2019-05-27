@@ -27,7 +27,7 @@ public class scenemanager : MonoBehaviour
         // Setting the values for the last and next scene keys.
         lastSceneKey = KeyCode.LeftArrow;
 	    nextSceneKey = KeyCode.RightArrow;
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this.gameObject);
     }
 
 
