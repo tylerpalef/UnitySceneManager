@@ -28,7 +28,6 @@ public class scenemanager : MonoBehaviour
         lastSceneKey = KeyCode.LeftArrow;
 	    nextSceneKey = KeyCode.RightArrow;
         DontDestroyOnLoad(this);
-        // sceneNum is the index of the scene from the "Scenes in Build"
     }
 
 
