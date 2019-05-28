@@ -18,6 +18,7 @@ public class SceneTransition : MonoBehaviour
         if(Input.anyKey)
         {
             animator.SetTrigger("FadeOut");
+            Debug.Log("Fade out");
         }
 
 	}
